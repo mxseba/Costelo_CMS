@@ -1,0 +1,71 @@
+<div>
+<?PHP Portal::send('title', 'Galeria - wizytówki internetowe') ?>
+<?PHP Portal::send('metaTags', 'Galeria napraw sprzętu elektronicznego zrealizowana przez nasz serwis.') ?>
+<?PHP Portal::send('css', '<link rel="stylesheet" href="/themes/assets/css/simple-lightbox.min.css">') ?>
+</div>
+
+
+<style>
+.gallery:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.gallery .thumb {
+  padding: 7px 7px;	
+  float: left;
+  width: 25%;	
+}
+@media only screen and (max-width: 700px) {
+   .gallery .thumb  {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+   .gallery .thumb  {
+    width: 100%;
+  }
+}
+.gallery img.hover-shadow {
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.gallery img.hover-shadow:hover {
+  -webkit-box-shadow: inset -1px 3px 8px 5px #6F87AF, 2px 5px 16px 0px #1B323E, 5px 5px 16px 5px rgba(0,0,0,0); 
+   box-shadow: inset -1px 3px 8px 5px #6F87AF, 2px 5px 16px 0px #1B323E, 5px 5px 16px 5px rgba(0,0,0,0);
+}
+
+</style>
+
+
+<div class="article rounded-lg">  
+	<div class="p-6">
+    <h1 id="pages_galeria_1" class="cms">Galeria</h1>
+    <div class="gallery">
+     
+		  <?php $gallery = json_decode(file_get_contents('./data/gallery.json'), true);
+		  foreach($gallery as $key=>$image):
+			  $index = $key + 1;
+			  $thumbPath = '/themes/assets/images/gallery/thumb/'.preg_replace('"\.jpg$"', '.webp', $image[0]);
+			  $fullPath = '/themes/assets/images/gallery/full/'.$image[0];
+			  $title = $image[1];
+		  ?>
+		  <div class="thumb">
+			  <a style="width:100%" href="<?php echo $fullPath; ?>"><img class="hover-shadow" style="width:100%" src="<?php echo $thumbPath; ?>" alt="<?php echo $title; ?>" title="<?php echo $title; ?>"></a>	
+		  </div>
+		  <?php endforeach; ?>
+		
+		  <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/themes/assets/js/simple-lightbox.min.js"></script>
+
+<script>
+  (function() {
+    var $gallery = new SimpleLightbox('.gallery a', {});
+	})();
+</script>

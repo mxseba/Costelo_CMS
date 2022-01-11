@@ -1,0 +1,6 @@
+{
+    "require": {
+        "scotteh/php-dom-wrapper": "^2.0",
+        "voku/simple_html_dom": "^4.7"
+    }
+}

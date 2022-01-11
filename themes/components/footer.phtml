@@ -1,0 +1,236 @@
+<head>
+<style>
+@font-face {
+  font-family: 'icomoon';
+  src: url('/themes/assets/fonts/icomoon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+
+/*
+.main-footer {
+	background-color: #222;
+	position:fixed;
+   bottom:0;
+	width: 100%;
+}
+*/
+
+footer {
+	background-color: #222;
+	position: relative;
+  	width: 100%;
+}
+
+.footer-bottom {
+	padding: 14px 0 12px;
+}
+
+.container {
+  text-align: left;
+  position: relative;
+}
+
+.et-social-icons {
+  float: right;
+}
+
+
+ol, ul {
+	list-style: none;
+}
+
+.et-social-icons li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.footer-bottom a {
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.et-social-icon a {
+    display: inline-block;
+    font-size: 24px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: color .3s ease 0s;
+    transition: color .3s ease 0s;
+    color: #666;
+    text-decoration: none;
+}
+
+.footer-info {
+    text-align: left;
+	font-size: 1rem;
+    color: #666;
+    display: inline-block;
+}
+
+
+.footer-author {
+    text-align: left;
+	font-size: 0.9rem;
+    color: #666;
+    display: inline-block;
+}
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+.footer-author a:hover {
+    opacity: .7;
+}
+
+.footer-author a {
+    font-weight: 700;
+    color: #666;
+}
+
+.et-social-icons a:hover {
+	opacity: .7;
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+	color: #2ea3f2;
+}
+
+
+@media only screen and (max-width: 980px){
+	.et-social-icons {
+		margin: 0 0 5px;
+	}	
+	
+	.footer-info, .et-social-icons {
+		float: none;
+		text-align: center;
+	}
+	
+	.container {
+		transition: none;
+		-webkit-transition: none;
+		-moz-transition: none;
+	}
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-twitter:before {
+  content: "\f099";
+}
+.icon-facebook:before {
+  content: "\f09a";
+}
+.icon-rss:before {
+  content: "\f09e";
+}
+.icon-google_plus:before {
+  content: "\f0d5";
+}
+.icon-instagram:before {
+  content: "\f16d";
+}
+
+</style>
+
+<footer>		
+	<div class="footer-bottom">
+		<div class="container row clearfix">
+			<ul class="et-social-icons">
+				<li class="et-social-icon">
+					<a href="#" class="icon">
+						<span class="icon-facebook"></span>
+					</a>
+				</li>
+				<li class="et-social-icon">
+					<a href="#" class="icon">
+						<span class="icon-twitter"></span>
+					</a>
+				</li>
+				<li class="et-social-icon">
+					<a href="#" class="icon">
+						<span class="icon-google_plus"></span>
+					</a>
+				</li>
+				<li class="et-social-icon">
+					<a href="#" class="icon">
+						<span class="icon-instagram"></span>
+					</a>
+				</li>
+				<li class="et-social-icon">
+					<a href="https://sqs.io/" class="icon">
+						<span class="icon-rss"></span>
+					</a>
+				</li>
+			</ul>
+			<div class="footer-info">
+<div id="components_footer_1" class="cmsText footer-info">Wizytówki internetowe<br>
+</div> © 2021</div>
+<br>
+			<div class="footer-author">
+<span class="cmsText footer-author">Strona stworzona przez</span><a href="mailto:mxseba80@gmail.com"> mxseba</a>
+			</div>
+		</div>	<!-- .container -->
+	</div>
+</footer>
+
+
+
+<script>
+window.addEventListener("load", activateStickyFooter);
+
+function activateStickyFooter() {
+	adjustFooterCssTopToSticky(); 
+	window.addEventListener("resize", adjustFooterCssTopToSticky);
+}
+
+function adjustFooterCssTopToSticky() {
+	const footer = document.querySelector("footer");
+	const bounding_box = footer.getBoundingClientRect();
+	const footer_height = bounding_box.height;
+	const window_height = window.innerHeight;
+	const above_footer_height = bounding_box.top - getCssTopAttribute(footer);
+	if (above_footer_height + footer_height <= window_height) {
+		const new_footer_top = window_height - (above_footer_height + footer_height);
+		footer.style.top = new_footer_top + "px";
+	} else if (above_footer_height + footer_height > window_height) {
+		footer.style.top = null;
+	}
+}
+
+function getCssTopAttribute(htmlElement) {
+	const top_string = htmlElement.style.top;
+	if (top_string === null || top_string.length === 0) {
+		return 0;
+	}
+	const extracted_top_pixels = top_string.substring(0, top_string.length - 2);
+	return parseFloat(extracted_top_pixels);
+}
+</script>
+</head>

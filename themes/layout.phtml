@@ -1,0 +1,62 @@
+<?php session_start() ?>
+
+
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="description" content="<?=Portal::receive('metaTags') ?>">
+		<title><?=Portal::receive('title') ?></title>
+		
+		<?php if (!empty($_SESSION['user'])) : ?>
+			<link type="text/css" rel="stylesheet" href="/editor/cms.css">
+		<?php endif; ?>
+	
+		<?=Portal::receive('css') ?>
+		<link type="text/css" rel="stylesheet" href="/themes/assets/css/output.css">
+		<link rel="icon" type="image/png" href="/favicon.png">
+		<script  type="text/javascript" src="/themes/assets/js/placeholder.js"></script>
+		<?=Portal::receive('js') ?>
+	</head>
+ 
+	<body>
+	
+	
+	<?php if (!empty($_SESSION['user'])) : ?>
+		<nav id='stickyMenuCms'>  
+			<ul class="navbar-left">
+				<li><a href='javascript:saveText();'>Zapisz</a></li>
+			</ul>
+			<ul class="navbar-right">
+				<li><a href='/adminLog/?a=logout'>Wyloguj</a></li>
+			</ul>
+		</nav>
+	<?php endif; ?>		
+	
+
+
+		<header>
+			<?=Component::render('header') ?>
+			<?=Component::render('navbar') ?>
+		</header>
+		
+		
+		 <div class="row flex-1 grid grid-cols-1  gap-4 ">
+			<main class="my-10"> 
+				<?=Portal::receive('main') ?>
+			</main>
+			
+		
+		</div>
+	
+		<?=Component::render('footer') ?>
+
+
+
+	<?php if (!empty($_SESSION['user'])) : ?>
+		<script  type="text/javascript" src="/editor/cms.js"></script>
+	<?php endif; ?>		
+
+</body>
+</html>
